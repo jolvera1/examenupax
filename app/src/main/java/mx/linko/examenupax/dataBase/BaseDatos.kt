@@ -6,8 +6,8 @@ import mx.linko.examenupax.dataBase.dao.PokemonDao
 import mx.linko.examenupax.dataBase.tablas.Pokemon
 
 @Database(entities = [Pokemon::class], version = 1)
-abstract class baseDatos : RoomDatabase() {
-    abstract val pokemonDAO: PokemonDao
+abstract class BaseDatos : RoomDatabase() {
+    abstract val pokemonDao: PokemonDao
 
     companion object {
         const val DB_NAME = "database-name"

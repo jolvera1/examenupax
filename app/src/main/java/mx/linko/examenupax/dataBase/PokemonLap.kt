@@ -10,19 +10,23 @@ class PokemonLap(context: Context) {
 
     init {
         val appContext = context.applicationContext
-        val database = Room.databaseBuilder<baseDatos>(
+        val database = Room.databaseBuilder<BaseDatos>(
             appContext,
-            baseDatos::class.java, "pokemon"
-        )
-            .fallbackToDestructiveMigration().build()
-        pokemonDao = database.pokemonDAO
+            BaseDatos::class.java, "Pokemon"
+        ).build()
+        pokemonDao = database.pokemonDao
     }
 
-    val pokemonNombre: List<Pokemon>
-        get() = pokemonDao.getPokemon
+    fun pokemons(max: Int):  List<Pokemon> {
+        return pokemonDao.getPokemons(max)
+    }
 
-
-
+    fun pokemonId(id: Int):  Pokemon? {
+        return pokemonDao.getPokemonId(id)
+    }
+    fun pokemonNombre(name: String):   Pokemon?{
+        return pokemonDao.getPokemonName(name)
+    }
 
     fun addPokemon(pokemon: Pokemon) {
         pokemonDao.addPokemon(pokemon)

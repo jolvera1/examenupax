@@ -8,9 +8,13 @@ import mx.linko.examenupax.dataBase.tablas.Pokemon
 interface PokemonDao {
 
 
-    @get:Query("SELECT * FROM Pokemon ORDER BY id")
-    val getPokemon: List<Pokemon>
+    @Query("SELECT * FROM Pokemon ORDER BY id LIMIT :max")
+    fun getPokemons(max: Int): List<Pokemon>
 
+    @Query("SELECT * FROM Pokemon WHERE id LIKE :id")
+    fun getPokemonId(id: Int): Pokemon?
+    @Query("SELECT * FROM Pokemon WHERE name LIKE :name")
+    fun getPokemonName(name: String): Pokemon?
     @Insert
     fun addPokemon(Pokemon: Pokemon)
 
